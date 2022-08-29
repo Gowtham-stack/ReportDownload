@@ -12,6 +12,12 @@ namespace ReportDownload.Controllers
             this.reportProcessInServer = reportProcessInServer;
         }
 
+        [HttpGet("GenerateReportWithoutCancellationToken")]
+        public async Task<IActionResult> GenerateReportAsyncWithoutToken()
+        {
+            await reportProcessInServer.GenerateReport();
+            return Ok();
+        }
         [HttpGet("GenerateReport")]
         public async Task<IActionResult> GenerateReportAsync(CancellationToken cancellationToken)
         {
